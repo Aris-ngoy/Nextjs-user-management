@@ -13,7 +13,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://pa55w0rd:PA55w0rd@db4free.net:3306/pa55w0rd"
+  url      = env("DATABASE_URL")
 }
 
 model User {
