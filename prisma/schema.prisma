@@ -41,6 +41,14 @@ model Attendance {
   temperature     Float
 }
 
+
+// model Authentication{
+//   id              Int                 @id @default(autoincrement())
+//   password        String
+//   user            User                @relation(fields: [userId], references: [id])
+//   userId          Int
+// }
+
 enum Role {
   EMPLOYEE
   ADMIN
