@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://pa55w0rd:PA55w0rd@db4free.net:3306/pa55w0rd"
+}
+
+model User {
+  id              Int                 @id @default(autoincrement())
+  email           String              @unique
+  first_name      String
+  last_name       String
+  phone           String               
+  dob             DateTime?
+  role            Role                @default(EMPLOYEE)
+  attendance      Attendance[]
+  createdAt       DateTime            @default(now())
+  updateAt        DateTime?            @updatedAt
+}
+
+model Attendance {
+  id              Int                 @id @default(autoincrement())
+  user            User                @relation(fields: [userId], references: [id])
+  userId          Int
+  createdAt       DateTime            @default(now())
+  updateAt        DateTime            @updatedAt
+  clockIn         DateTime            @default(now())
+  clockOut        DateTime?          
+  alcoholLevel    Float
+  temperature     Float
+}
+
+enum Role {
+  EMPLOYEE
+  ADMIN
+  SUPER_ADMIN
+}
