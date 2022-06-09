@@ -37,15 +37,24 @@ const UserEdit : NextPage<Props> = ({ id }: InferGetServerSidePropsType<typeof g
 
       setUser(data)
 
-      Object.keys(data!).forEach((key) => {
+      // Object.keys(data!).forEach((key) => {
         
-        if(key !== 'id'){
-          setValue(key, data![key])
-        }
-        if(key === 'dob'){
-          setValue(key, data![key].split('T')[0])
-        }
-      })
+      //   if(key !== 'id'){
+      //     setValue(key, data![key])
+      //   }
+      //   if(key === 'dob'){
+      //     setValue(key, data![key].split('T')[0])
+      //   }
+      // })
+
+      if(data){
+        setValue('first_name', data.first_name)
+        setValue('last_name', data.last_name)
+        setValue('phone', data.phone)
+        setValue('email', data.email)
+        setValue('dob', data.dob?.toString().split('T')[0])
+        setValue('role', data.role)
+      }
 
       //where clockOut is null
       const attendancesItems = data?.attendance.filter(x => x.clockOut === null)
