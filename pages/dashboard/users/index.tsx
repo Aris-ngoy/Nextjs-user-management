@@ -13,7 +13,7 @@ const Users : NextPage<Props> = ({ users }: InferGetServerSidePropsType<typeof g
   const router = useRouter()
 ///dashboard/users/user
   return (
-    <div className='h-[100%] w-full'>
+    <div className='h-[100%] w-[100%]'>
         <div className='flex flex-row p-3 shadow-md'>
             <a className='cursor-pointer flex flex-row items-center' onClick={()=>{ router.back() }}>
               <AiOutlineArrowLeft size={20} />

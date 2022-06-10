@@ -36,6 +36,8 @@ const Index : NextPage<Props> = ({ Attendancies }: InferGetServerSidePropsType<t
     const formatDateTime = (date: Date) => {
         const dateTime = new Date(date)
         //format with momnentjs DD/MM/YYYY : HH:mm:ss
+        //set time zone -2  
+        dateTime.setHours(dateTime.getHours() - 2)
         return moment(dateTime).format('HH:mm:ss')
     }
     
@@ -94,9 +96,9 @@ const Index : NextPage<Props> = ({ Attendancies }: InferGetServerSidePropsType<t
                         </thead>
                         <tbody>
                         {
-                            Attendancies && Attendancies.map((attendance: AttendanceItem, index: number) => (
+                            Attendancies && Attendancies.reverse().map((attendance: AttendanceItem, index: number) => (
                                 <tr key={index} className="border-b">
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.id}</td>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{attendance.user?.id}</td>
                                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {startCase(`${attendance.user?.first_name} ${attendance.user?.last_name}`)}
                                     </td>

@@ -11,7 +11,8 @@ export const onCreateAttendance = async (userData : IAttendance): Promise<Attend
     return user
 }
 
-export const onUpdateUserAttendance = async (userData : IAttendance): Promise<Attendance> => {
+export const onUpdateUserAttendance = async (userData : any): Promise<Attendance> => {
+
     const user = await prisma.attendance.update({
         where: {
             id: userData.id
