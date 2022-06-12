@@ -45,8 +45,6 @@ const DialogComponent = ({ open, handleClose, id }: Props)=>{
                 const title = `${firstItem.user?.first_name} ${firstItem.user?.last_name}`;
                 const items = data?.map((item:IAttendance)=>{
                     return {
-                        "Alcohol Level": item.alcoholLevel.toFixed(2),
-                        "Temperature" : item.temperature.toFixed(2),
                         "Date" : formatDateTime(item.createdAt),
                         "Clock In" : formatDateTime(item.clockIn),
                         "Clock Out" : item.clockOut !== null ? formatDateTime(item.clockOut) : ""

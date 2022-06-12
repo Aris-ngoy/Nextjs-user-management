@@ -40,3 +40,4 @@ export const passwordValidPattern = {
         message: "Your password is too short."
     }
 }
+

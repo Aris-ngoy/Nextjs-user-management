@@ -22,7 +22,7 @@ const TextInput : NextPage<Props> = ({ control, name, rules, type, placeholder, 
             </select> :
             <input className={ fieldState.error && `focus:border-red-400 focus:ring-red-400`} {...field} type={type} placeholder={placeholder} />
         }
-        {fieldState.error && <div className='text-[11px] text-red-400'>{fieldState.error.message}</div>}
+        {fieldState.error && <div className='text-[11px] text-red-400 w-80'>{fieldState.error.message}</div>}
     </div>)
 }
 

@@ -54,7 +54,7 @@ const Index : NextPage<Props> = ({ Attendancies }: InferGetServerSidePropsType<t
         <div className='flex flex-col bg-indigo-500 rounded-lg p-4'>
             <span className='text-white text-base'>Alcohol Level</span>
             <span className='text-white text-xs'>Average</span>
-            <span className='text-white text-base'>{averageAlcohol.toFixed(2)} BAC</span>
+            <span className='text-white text-base'>{averageAlcohol.toFixed(2)} mg / L</span>
         </div>
         <div className='flex flex-col bg-indigo-500 rounded-lg p-4'>
             <span className='text-white text-base'>Temperature</span>
@@ -106,7 +106,7 @@ const Index : NextPage<Props> = ({ Attendancies }: InferGetServerSidePropsType<t
                                         {attendance.temperature} ℃
                                     </td>
                                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                        {attendance.alcoholLevel} BAC
+                                        {attendance.alcoholLevel} mg / L
                                     </td>
                                     <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                         {attendance.user?.role}

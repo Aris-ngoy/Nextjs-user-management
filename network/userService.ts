@@ -27,3 +27,14 @@ export const onUpdateUser = async <T>(id : number, user: ICreateUser): Promise<T
     })
     return result.json(); 
 }
+
+export const onLogin = async <T>(email : string, password : string) : Promise<T> => {
+    const result = await fetch(`/api/auth/`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+    })
+    return result.json(); 
+} 
