@@ -19,10 +19,8 @@ export default async function handler(
       if(id === undefined){
         throw new Error("UserId is required")
       }
-
       
-      
-      if(req.method === 'POST' || req.method === "PUT") {
+      if(req.method === 'POST' || req.method === 'PUT') {
         
         const  currentLogin = await prisma.attendance.findFirst({
           where: {
@@ -45,7 +43,16 @@ export default async function handler(
 
           const clockOut = removeTime(new Date(req.body.clockOut))
           const clockIn = removeTime(currentLogin.clockIn)
-          if(clockOut === clockIn){
+
+          if(id === "admin"){
+            let body = {
+              id : currentLogin.id,
+              userId : parseInt(req.body.userId as string),
+              clockOut : new Date(req.body.clockOut),
+            }
+            const result = await onUpdateUserAttendance(body)
+            res.status(200).json({ data : result })
+          }else if(clockOut === clockIn){
             let body = {
               id : currentLogin.id,
               userId : parseInt(req.body.userId as string),
@@ -59,6 +66,7 @@ export default async function handler(
         }else{
           res.status(404).json({ message : 'User did not clock in this morning...' })
         }
+
       }else if(req.method === 'GET') {
         const result = await getOneAttendance(parseInt(id as string))
         if(result){
@@ -67,8 +75,6 @@ export default async function handler(
           res.status(404).json({ message : 'User not found...' })
         }
       }
-
-
       
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {

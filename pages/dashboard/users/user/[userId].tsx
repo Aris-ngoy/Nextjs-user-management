@@ -95,13 +95,11 @@ const UserEdit : NextPage<Props> = ({ id }: InferGetServerSidePropsType<typeof g
           const id = attendance.id
           const userId = attendance.userId
           const clockOut = new Date()
-          const clockIn = attendance.clockIn
           const body = {
-            clockIn,
             clockOut,
             userId
           }
-         const result = await onClockingOut(id,body)
+         const result = await onClockingOut('admin',body)
          setIsClockingOut(false)
          router.back()
       } catch (error) {

@@ -16,6 +16,7 @@
     "@tailwindcss/forms": "^0.5.2",
     "bcrypt": "^5.0.1",
     "crypto-js": "^4.1.1",
+    "encrypt-storage": "^2.2.10",
     "file-saver": "^2.0.5",
     "linqts": "^1.14.4",
     "lodash": "^4.17.21",

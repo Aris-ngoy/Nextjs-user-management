@@ -1,7 +1,7 @@
 
-export const onClockingOut = async <T>(id : number, attendance: any): Promise<T> => {
+export const onClockingOut = async <T>(id : string, attendance: any): Promise<T> => {
     const result = await fetch(`/api/attendance/${id}`, {
-        method: "PUT",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
