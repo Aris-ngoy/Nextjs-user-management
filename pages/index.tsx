@@ -25,10 +25,15 @@ const Home: NextPage = (props) => {
     try {
       setIsLoading(true)
       const { data } = await onLogin<IResponse<IAthResponse>>(email, password)
-      setAuth(data ?? null)
-      router.replace('/dashboard')
-      showAlert({ type : AlertType.SUCCESS, message : `Welcome ${data?.first_name} ${data?.last_name}` })
-      setIsLoading(false)
+      if(data){
+        setAuth(data ?? null)
+        router.replace('/dashboard')
+        showAlert({ type : AlertType.SUCCESS, message : `Welcome ${data?.first_name} ${data?.last_name}` })
+        setIsLoading(false)
+      }else{
+        showAlert({ type : AlertType.ERROR, message : `failed to login` })
+        setIsLoading(false)
+      }
     } catch (error) {
       setIsLoading(false)
       showAlert({ type : AlertType.ERROR, message : `${JSON.stringify(error)}` })

@@ -45,6 +45,15 @@ export const getOneAttendance = async (id: number): Promise<Attendance | null> =
     return user
 }
 
+export const geUserattendance = async (id: number): Promise<Attendance[]> => {
+    const users = await prisma.attendance.findMany({
+        where: {
+            userId : id
+        }
+    })
+    return users
+}
+
 export const onExportAttendances = async (fromDate: Date, toDate : Date, userId : number): Promise<Attendance[]> => {
     const results = await prisma.attendance.findMany({
         include : {

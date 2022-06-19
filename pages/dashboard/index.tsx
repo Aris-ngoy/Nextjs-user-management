@@ -5,18 +5,31 @@ import { NextPage, InferGetServerSidePropsType } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import { useRecoilValue } from 'recoil'
 import { onGetUserAttendancies } from '../../controller/AttendanceController'
 import { toJson } from '../../helpers/forms/toJson'
+import { IAthResponse } from '../../models/IAth'
+import { AuthAtom } from '../../provider/AuthAtom'
 
 const Index : NextPage<Props> = ({ Attendancies }: InferGetServerSidePropsType<typeof getServerSideProps>)=> {
 
     const router = useRouter()
+    const auth = useRecoilValue<IAthResponse | null>(AuthAtom)
+
 
     const [clockInUsers, setclockInUsers] = useState<number>(0)
     const [averageTemp, setAverageTemp] = useState<number>(0)
     const [averageAlcohol, setAverageAlcohol] = useState<number>(0)
 
     useEffect(() => {
+
+
+        if(auth){
+            if(auth.role === 'EMPLOYEE'){
+                router.replace('/employee')
+            }
+        }
+
         const temp = Attendancies.reduce((acc, curr) => {
             return acc + curr.temperature
         }, 0)
